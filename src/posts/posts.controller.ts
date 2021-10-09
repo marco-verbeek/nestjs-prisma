@@ -24,16 +24,11 @@ export class PostsController {
     return this.postsService.posts({ where: { published: true } });
   }
 
-  @Get('search/:searchString')
-  async getSearchedPosts(
-    @Param('searchString') searchString: string,
-  ): Promise<PostModel[]> {
+  @Get('search/:query')
+  async getSearchedPosts(@Param('query') query: string): Promise<PostModel[]> {
     return this.postsService.posts({
       where: {
-        OR: [
-          { title: { contains: searchString } },
-          { content: { contains: searchString } },
-        ],
+        OR: [{ title: { contains: query } }, { content: { contains: query } }],
       },
     });
   }

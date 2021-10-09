@@ -1,6 +1,6 @@
 describe('UsersService', () => {
   describe('When getting a user', () => {
-    describe('with a correct ID', () => {
+    describe('with a correct Id', () => {
       it.todo('should return the user');
     });
 
@@ -46,7 +46,7 @@ describe('UsersService', () => {
   describe('Deleting a user', () => {
     describe('with valid data', () => {
       it.todo('should delete the user from the database');
-      it.todo('should return the delete user');
+      it.todo('should return the deleted user');
     });
 
     describe('with invalid data', () => {
