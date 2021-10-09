@@ -8,6 +8,13 @@ Project coded while learning to use of Prisma along with NestJS.
 <br/>
 Uses the [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## TODO List
+
+- [x] Implement Prisma
+- [ ] Add OpenAI/Swagger documentation 
+- [ ] Add integration tests for controllers
+- [ ] Add unit tests for services
+
 ## Installation
 
 ```bash
