@@ -1,5 +1,5 @@
 <p align="center">
-  NestJS + Prisma = ❤
+  <h1>NestJS + Prisma = ❤</h1>
 </p>
 
 ## Description
@@ -11,7 +11,7 @@ Uses the [Nest](https://github.com/nestjs/nest) framework TypeScript starter rep
 ## TODO List
 
 - [x] Implement Prisma
-- [ ] Add OpenAI/Swagger documentation 
+- [ ] Add OpenAI/Swagger documentation
 - [ ] Add integration tests for controllers
 - [ ] Add unit tests for services
 
