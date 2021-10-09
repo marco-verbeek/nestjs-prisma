@@ -1,6 +1,4 @@
-<p align="center">
-  <h1>NestJS + Prisma = ❤</h1>
-</p>
+<h1 align="center">NestJS + Prisma = ❤</h1>
 
 ## Description
 
