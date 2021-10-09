@@ -9,7 +9,7 @@ Uses the [Nest](https://github.com/nestjs/nest) framework TypeScript starter rep
 ## TODO List
 
 - [x] Implement Prisma
-- [ ] Add logging middleware
+- [x] Add logging middleware
 - [ ] Add OpenAPI/Swagger documentation
 - [ ] Add integration tests for controllers
 - [ ] Add unit tests for services

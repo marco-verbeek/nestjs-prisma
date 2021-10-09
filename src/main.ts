@@ -1,10 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import { logger } from './middleware/logger.middleware';
 import { PrismaService } from './prisma.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.use(logger);
 
   const prismaService: PrismaService = app.get(PrismaService);
   prismaService.enableShutdownHooks(app);
