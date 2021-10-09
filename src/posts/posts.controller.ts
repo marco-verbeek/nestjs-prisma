@@ -3,6 +3,8 @@ import {
   Controller,
   Delete,
   Get,
+  HttpException,
+  HttpStatus,
   Param,
   Post,
   Put,
@@ -14,14 +16,18 @@ import { Post as PostModel } from '@prisma/client';
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
-  @Get(':id')
-  async getPostById(@Param('id') id: string): Promise<PostModel> {
-    return this.postsService.post({ id: Number(id) });
-  }
-
   @Get('feed')
   async getPublishedPosts(): Promise<PostModel[]> {
     return this.postsService.posts({ where: { published: true } });
+  }
+
+  @Get(':id')
+  async getPostById(@Param('id') id: string): Promise<PostModel> {
+    const post = await this.postsService.post({ id: Number(id) });
+
+    if (post) return post;
+
+    throw new HttpException('Post not found', HttpStatus.NOT_FOUND);
   }
 
   @Get('search/:query')
