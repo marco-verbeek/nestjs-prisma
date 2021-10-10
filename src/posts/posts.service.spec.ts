@@ -5,7 +5,7 @@ describe('PostsService', () => {
     });
 
     describe('with an incorrect Id', () => {
-      it.todo('should throw an error');
+      it.todo('should return undefined');
     });
   });
 
@@ -27,7 +27,7 @@ describe('PostsService', () => {
 
     describe('with invalid data', () => {
       it.todo('should not have created the post');
-      it.todo('should throw an error');
+      it.todo('should return undefined');
     });
   });
 
@@ -39,7 +39,7 @@ describe('PostsService', () => {
 
     describe('with invalid data', () => {
       it.todo('should not have updated the post');
-      it.todo('should throw an error');
+      it.todo('should return undefined');
     });
   });
 
@@ -51,7 +51,7 @@ describe('PostsService', () => {
 
     describe('with invalid data', () => {
       it.todo('should not have deleted the post');
-      it.todo('should throw an error');
+      it.todo('should return undefined');
     });
   });
 });

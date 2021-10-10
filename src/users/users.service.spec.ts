@@ -1,11 +1,57 @@
+import { Test, TestingModule } from '@nestjs/testing';
+import { PrismaService } from '../prisma.service';
+import { stubValidUser } from './stubs/valid.user.stub';
+import { UsersService } from './users.service';
+
 describe('UsersService', () => {
+  let usersService: UsersService;
+
+  let mockedPrismaService = {
+    user: {
+      findUnique: jest.fn(),
+      findMany: jest.fn(),
+      create: jest.fn(),
+      update: jest.fn(),
+      delete: jest.fn(),
+    },
+  };
+
+  beforeEach(async () => {
+    const app: TestingModule = await Test.createTestingModule({
+      providers: [
+        UsersService,
+        { provide: PrismaService, useValue: mockedPrismaService },
+      ],
+    }).compile();
+
+    usersService = app.get<UsersService>(UsersService);
+  });
+
   describe('When getting a user', () => {
     describe('with a correct Id', () => {
-      it.todo('should return the user');
+      beforeAll(() => {
+        mockedPrismaService.user.findUnique = jest
+          .fn()
+          .mockResolvedValue(stubValidUser);
+      });
+
+      it('should return the user', async () => {
+        const user = await usersService.user({ id: stubValidUser.id });
+        expect(user).toEqual(stubValidUser);
+      });
     });
 
     describe('with an incorrect Id', () => {
-      it.todo('should throw an error');
+      beforeAll(() => {
+        mockedPrismaService.user.findUnique = jest
+          .fn()
+          .mockResolvedValue(undefined);
+      });
+
+      it('should return undefined', async () => {
+        const user = await usersService.user({ id: -1 });
+        expect(user).toEqual(undefined);
+      });
     });
   });
 
@@ -27,7 +73,7 @@ describe('UsersService', () => {
 
     describe('with invalid data', () => {
       it.todo('should not have created the user');
-      it.todo('should throw an error');
+      it.todo('should return undefined');
     });
   });
 
@@ -39,7 +85,7 @@ describe('UsersService', () => {
 
     describe('with invalid data', () => {
       it.todo('should not have updated the user');
-      it.todo('should throw an error');
+      it.todo('should return undefined');
     });
   });
 
@@ -51,7 +97,7 @@ describe('UsersService', () => {
 
     describe('with invalid data', () => {
       it.todo('should not have deleted the user');
-      it.todo('should throw an error');
+      it.todo('should return undefined');
     });
   });
 });
