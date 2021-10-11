@@ -45,23 +45,38 @@ export class PostsController {
   ): Promise<PostModel> {
     const { title, content, authorEmail } = postData;
 
-    return this.postsService.createPost({
+    const createdPost = await this.postsService.createPost({
       title,
       content,
       author: { connect: { email: authorEmail } },
     });
+
+    if (createdPost) return createdPost;
+
+    throw new HttpException(
+      'Could not create draft post',
+      HttpStatus.BAD_REQUEST,
+    );
   }
 
   @Put('publish/:id')
   async publishPost(@Param('id') id: string): Promise<PostModel> {
-    return this.postsService.updatePost({
+    const post = await this.postsService.updatePost({
       where: { id: Number(id) },
       data: { published: true },
     });
+
+    if (post && post.published) return post;
+
+    throw new HttpException('Could not publish post', HttpStatus.BAD_REQUEST);
   }
 
   @Delete(':id')
   async deletePost(@Param('id') id: string): Promise<PostModel> {
-    return this.postsService.deletePost({ id: Number(id) });
+    const post = await this.postsService.deletePost({ id: Number(id) });
+
+    if (post) return post;
+
+    throw new HttpException('Could not delete post', HttpStatus.BAD_REQUEST);
   }
 }
